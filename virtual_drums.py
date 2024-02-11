@@ -1,7 +1,5 @@
 
-# Source code: https://www.github.com/navendu-pottekkat/virtual-drums
 
-# Importing the necessary libraries
 import numpy as np
 import time
 import cv2
