@@ -3,12 +3,11 @@ import time
 import cv2
 from pygame import mixer
 
-# Initialize flag variables to track if the beat has been played for each region
 snare_beat_played = False
 hat_beat_played = False
 
 # Initialize the mixer
-mixer.init()
+mixer.init() 
 
 # Importing drum beats
 hat_sound = mixer.Sound('./sounds/high_hat_2.wav')
@@ -27,7 +26,7 @@ def play_beat(detected, sound, beat_played_flag):
         elif sound == hat_sound:
             hat_beat_played = True
 
-
+     
 # This function is used to check if green color is present in the small region
 def detect_in_region(frame, sound, beat_played_flag):
     global snare_beat_played, hat_beat_played
@@ -60,8 +59,8 @@ def detect_in_region(frame, sound, beat_played_flag):
 verbose = False
 
 # Set HSV range for detecting green color
-greenLower = (25,52,72)
-greenUpper = (102,255,255)
+greenLower = (25,50,50)
+greenUpper = (32,255,255)
 
 # Obtain input from the webcam
 camera = cv2.VideoCapture(0)
@@ -72,8 +71,8 @@ kernel = np.ones((7,7), np.uint8)
 
 # Load the images
 hat_img = cv2.imread('./images/high_hat.png')
-snare_img = cv2.imread('./images/snare_drum.png')
-kick_drum_img = cv2.imread('./images/Salt.jpg')
+snare_img = cv2.imread('./images/Snare.webp')
+kick_drum_img = cv2.imread('./images/BassDrum.webp')
 
 # Define the dimensions of the regions
 hat_thickness = [200,100]
@@ -89,8 +88,8 @@ kick_drum = cv2.resize(kick_drum_img, (kick_drum_btm[0] - kick_drum_top[0], kick
 
 
 # Set the region area for detecting green color
-hat_center = [np.shape(frame)[1] * 2 // 8, np.shape(frame)[0] * 6 // 8]
-snare_center = [np.shape(frame)[1] * 6 // 8, np.shape(frame)[0] * 6 // 8]
+hat_center = [np.shape(frame)[1] * 2 // 8, np.shape(frame)[0] * 2 // 8]
+snare_center = [np.shape(frame)[1] * 2 // 8, np.shape(frame)[0] * 6 // 8]
 
 hat_thickness = [200,100]
 hat_top = [hat_center[0] - hat_thickness[0] // 2, hat_center[1] - hat_thickness[1] // 2]
